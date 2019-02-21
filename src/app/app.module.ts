@@ -7,6 +7,7 @@ import { HomeComponent} from './components/home/home.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { LoginComponent } from './components/login/login.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoginComponent } from './components/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MdlModule
+    MdlModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

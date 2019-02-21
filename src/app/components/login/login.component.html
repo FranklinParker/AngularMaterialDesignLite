@@ -1,1 +1,18 @@
-<h3>Login</h3>
+<form [formGroup]="form"
+      autocomplete="off">
+  <div>
+    <label>User</label>
+    <input name="user"
+           formControlName="user"
+           type="text">
+  </div>
+  <div>
+    <label>Password</label>
+    <input name="password"
+           formControlName="password"
+           type="password">
+  </div>
+
+</form>
+
+
