@@ -6,22 +6,21 @@ import { AppComponent } from './app.component';
 import { HomeComponent} from './components/home/home.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
-import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TopNavComponent,
-    EditItemComponent,
-    LoginComponent
+    EditItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MdlModule,
-    ReactiveFormsModule
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
