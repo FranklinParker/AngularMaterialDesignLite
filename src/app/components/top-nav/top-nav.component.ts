@@ -15,8 +15,9 @@ export class TopNavComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getIsLoggedAsObservable()
-      .subscribe((isLoggedIn: boolean) => {
-        this.isLoggedIn = isLoggedIn;
+      .subscribe((loggedIn: boolean) => {
+        console.log('isLoggedIn:' + loggedIn)
+        this.isLoggedIn = loggedIn;
       });
   }
 

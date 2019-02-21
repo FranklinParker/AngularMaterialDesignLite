@@ -16,7 +16,8 @@ export class AuthService {
   }
 
   public authenticate(user: string, password: string): boolean {
-    if (user === 'user' && password === 'text') {
+    console.log('user:' + user + ' password:' + password);
+    if (user === 'user' && password === 'test') {
       this.isLoggedIn.next(true);
       return true;
     } else {
