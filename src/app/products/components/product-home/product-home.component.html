@@ -3,7 +3,9 @@
     <div class="mdl-grid">
       <div *ngFor="let product of products"
            class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-        <app-product-item [product]="product"></app-product-item>
+        <app-product-item [product]="product"
+                          backgroundColor="lightGray">
+        </app-product-item>
       </div>
     </div>
   </main>

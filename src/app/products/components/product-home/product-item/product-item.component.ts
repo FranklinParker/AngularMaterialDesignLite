@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {Product} from '../../../models/product';
 
 @Component({
@@ -8,9 +8,18 @@ import {Product} from '../../../models/product';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product: Product;
-  constructor() { }
+  @Input() backgroundColor: string;
+
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  getBackgroundColor() {
+    return {
+      'background-color': this.backgroundColor
+    };
   }
 
 }
