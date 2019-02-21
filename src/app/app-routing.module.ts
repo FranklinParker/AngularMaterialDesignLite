@@ -7,9 +7,13 @@ import {AuthGuard} from './auth/services/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: '',
+    loadChildren: './products/products.module#ProductsModule'
   },
   {
     path: 'edit',
