@@ -13,7 +13,15 @@ export class ProductsService {
     productName: 'Coffee from Cuba',
     price: 14.99,
     productType: 'Coffee'
-  }];
+  }, {
+    productName: 'Coffee from Brazil',
+    price: 20.99,
+    productType: 'Coffee'
+  }, {
+      productName: 'Coffee From Rwanda',
+      price: 10.99,
+      productType: 'Coffee'
+    }];
 
   constructor() {
   }
