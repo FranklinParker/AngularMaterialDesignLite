@@ -4,11 +4,13 @@ import {MdlModule} from '@angular-mdl/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent} from './components/home/home.component';
+import { TopNavComponent } from './components/top-nav/top-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    TopNavComponent
   ],
   imports: [
     BrowserModule,
