@@ -1,4 +1,9 @@
 <div >
-  <a routerLink="/">Home</a>
-  <a routerLink="/edit">Edit</a>
+  <ng-container *ngIf="isLoggedIn">
+    <a routerLink="/">Home</a>
+    <a routerLink="/edit">Edit</a>
+  </ng-container>
+
+  <a routerLink="/login" *ngIf="!isLoggedIn">Login</a>
+
 </div>
