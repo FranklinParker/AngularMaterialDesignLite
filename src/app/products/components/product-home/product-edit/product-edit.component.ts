@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MdlDialogReference} from '@angular-mdl/core';
 
 @Component({
   selector: 'app-product-edit',
@@ -7,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MdlDialogReference) { }
 
   ngOnInit() {
   }
   onSave() {
+    this.dialog.hide();
   }
 
 }
