@@ -30,7 +30,9 @@
               "src/styles.scss",
               "./node_modules/material-design-lite/material.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/material-design-lite/material.min.js"
+            ]
           },
           "configurations": {
             "production": {
