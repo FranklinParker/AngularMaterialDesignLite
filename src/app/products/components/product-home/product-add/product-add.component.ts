@@ -3,6 +3,7 @@ import {ProductsService} from '../../../services/products.service';
 import {MdlDialogReference} from '@angular-mdl/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../../models/product';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-add',
@@ -12,7 +13,8 @@ import {Product} from '../../../models/product';
 export class ProductAddComponent implements OnInit {
   form: FormGroup;
   constructor(private productService: ProductsService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private router: Router) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -30,7 +32,8 @@ export class ProductAddComponent implements OnInit {
       price
     }
     console.log('productToSave', productToSave);
-    this.productService.saveProduct(productToSave);
+    this.productService.addProduct(productToSave);
+    this.router.navigateByUrl('/product/list');
   }
 
 }

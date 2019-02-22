@@ -38,7 +38,7 @@ export class ProductEditComponent implements OnInit {
       price
     }
     console.log('productToSave', productToSave);
-    this.productService.saveProduct(productToSave);
+    this.productService.updateProduct(productToSave);
     this.dialog.hide();
   }
   onCancel() {

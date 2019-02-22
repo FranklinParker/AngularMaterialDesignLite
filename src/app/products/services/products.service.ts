@@ -36,7 +36,7 @@ export class ProductsService {
     return this.productSubject.asObservable();
   }
 
-  public saveProduct(productSave: Product) {
+  public updateProduct(productSave: Product) {
     const productFind = this.products.find((product: Product) => product.id === productSave.id);
     if (productFind) {
       productFind.price = productSave.price;
@@ -44,5 +44,14 @@ export class ProductsService {
       productFind.productName = productSave.productName;
 
     }
+  }
+
+  public addProduct(productSave: Product) {
+    const newId: number = this.products.length + 1;
+    productSave.id = newId.toString();
+    this.products.unshift(productSave);
+    this.productSubject.next(this.products);
+    const productFind = this.products.find((product: Product) => product.id === productSave.id);
+
   }
 }
