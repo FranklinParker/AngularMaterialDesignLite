@@ -2,9 +2,19 @@
   width: 92%;
   height: 92%;
   margin: 4%;
+  border: 1pt solid transparent;
+  transition: border 300ms;
+
 }
 
 .mdl-card:hover {
   border: 1pt solid blue;
+}
+
+.product-image{
+  padding: 5px;
+  width: auto;
+  height: 100px;
+  border-radius: 50%;
 }
 
