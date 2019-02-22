@@ -27,12 +27,22 @@ export class ProductsService {
     price: 10.99,
     productType: 'Coffee'
   }];
-  private productSubject = new BehaviorSubject<Product[]>(this.products)
+  private productSubject = new BehaviorSubject<Product[]>(this.products);
 
   constructor() {
   }
 
   public getProducts(): Observable<Product[]> {
     return this.productSubject.asObservable();
+  }
+
+  public saveProduct(productSave: Product) {
+    const productFind = this.products.find((product: Product) => product.id === productSave.id);
+    if (productFind) {
+      productFind.price = productSave.price;
+      productFind.productType = productSave.productType;
+      productFind.productName = productSave.productName;
+
+    }
   }
 }
