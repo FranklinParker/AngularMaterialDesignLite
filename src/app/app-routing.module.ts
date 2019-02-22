@@ -1,19 +1,12 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {EditItemComponent} from './components/edit-item/edit-item.component';
 import {LoginComponent} from './auth/components/login.component';
-import {AuthGuard} from './auth/services/auth.guard';
 
 const routes: Routes = [
 
   {
     path: '',
     loadChildren: './products/products.module#ProductsModule'
-  },
-  {
-    path: 'edit',
-    component: EditItemComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'login',

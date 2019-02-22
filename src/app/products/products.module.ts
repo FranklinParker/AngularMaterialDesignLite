@@ -8,12 +8,14 @@ import {ProductEditComponent} from './components/product-home/product-edit/produ
 import {MdlModule} from '@angular-mdl/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
+import { ProductAddComponent } from './components/product-home/product-add/product-add.component';
 
 @NgModule({
   declarations: [
     ProductHomeComponent,
     ProductItemComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ProductAddComponent
   ],
   imports: [
     CommonModule,
