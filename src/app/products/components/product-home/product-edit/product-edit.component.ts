@@ -29,5 +29,9 @@ export class ProductEditComponent implements OnInit {
   onSave() {
     this.dialog.hide();
   }
+  onCancel() {
+    this.dialog.hide();
+
+  }
 
 }
