@@ -1,9 +1,10 @@
-<div class="demo-card-wide mdl-card ">
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
     <h3>Add Product</h3>
   </div>
   <form [formGroup]="form"
         autocomplete="off">
+
     <mdl-textfield type="text"
                    formControlName="productName"
                    label="Product Name"></mdl-textfield>
@@ -19,10 +20,8 @@
               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
         Save
       </button>
-      <button (click)="onCancel()"
-              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
-        Cancel
-      </button>
     </div>
+
   </form>
 </div>
+
