@@ -1,5 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Product} from '../../../models/product';
+import {MdlDialogService} from '@angular-mdl/core';
+import {ProductEditComponent} from '../product-edit/product-edit.component';
 
 @Component({
   selector: 'app-product-item',
@@ -10,7 +12,7 @@ export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   @Input() backgroundColor: string;
 
-  constructor() {
+  constructor(private dialogService: MdlDialogService) {
   }
 
   ngOnInit() {
@@ -22,4 +24,10 @@ export class ProductItemComponent implements OnInit {
     };
   }
 
+  onEdit() {
+    this.dialogService.showCustomDialog({
+      isModal: true,
+      component: ProductEditComponent
+    });
+  }
 }

@@ -1,15 +1,25 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { ProductsRoutingModule } from './products-routing.module';
-import { ProductHomeComponent } from './components/product-home/product-home.component';
-import { ProductItemComponent } from './components/product-home/product-item/product-item.component';
+import {ProductsRoutingModule} from './products-routing.module';
+import {ProductHomeComponent} from './components/product-home/product-home.component';
+import {ProductItemComponent} from './components/product-home/product-item/product-item.component';
+import {ProductEditComponent} from './components/product-home/product-edit/product-edit.component';
 
 @NgModule({
-  declarations: [ProductHomeComponent, ProductItemComponent],
+  declarations: [
+    ProductHomeComponent,
+    ProductItemComponent,
+    ProductEditComponent
+  ],
   imports: [
     CommonModule,
     ProductsRoutingModule
+  ],
+  entryComponents: [
+    ProductEditComponent
   ]
+
 })
-export class ProductsModule { }
+export class ProductsModule {
+}
