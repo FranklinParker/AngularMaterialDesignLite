@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     const {user, password} = this.form.value;
     const success = this.authService.authenticate(user, password);
     if (success) {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/product/list');
     }
   }
 

@@ -5,11 +5,15 @@ import {LoginComponent} from './auth/components/login.component';
 const routes: Routes = [
 
   {
-    path: '',
+    path: 'product',
     loadChildren: './products/products.module#ProductsModule'
   },
   {
     path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '',
     component: LoginComponent
   }
 ];
