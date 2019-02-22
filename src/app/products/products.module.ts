@@ -7,6 +7,7 @@ import {ProductItemComponent} from './components/product-home/product-item/produ
 import {ProductEditComponent} from './components/product-home/product-edit/product-edit.component';
 import {MdlModule} from '@angular-mdl/core';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    MdlModule,
-    ReactiveFormsModule
+    SharedModule
   ],
   entryComponents: [
     ProductEditComponent
