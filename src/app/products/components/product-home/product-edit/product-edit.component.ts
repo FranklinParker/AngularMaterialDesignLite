@@ -19,7 +19,6 @@ export class ProductEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('product', this.product);
     this.form = this.fb.group({
       productName: [this.product.productName, Validators.required],
       productType: [this.product.productType, Validators.required],
