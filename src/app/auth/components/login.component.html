@@ -1,20 +1,12 @@
 <form [formGroup]="form"
       autocomplete="off">
   <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-    <div class="mdl-textfield mdl-js-textfield ">
-      <input class="mdl-textfield__input"
-             formControlName="user"
-             name="user"
-             type="text" id="userTxt">
-      <label class="mdl-textfield__label mdl-textfield--floating-label" for="userTxt">User</label>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield">
-      <input class="mdl-textfield__input"
-             formControlName="password"
-             name="user"
-             type="password" id="passwordTxt">
-      <label class="mdl-textfield__label" for="passwordTxt">Password</label>
-    </div>
+    <mdl-textfield type="text"
+                   formControlName="user"
+                   label="User"></mdl-textfield>
+    <mdl-textfield type="password"
+                   formControlName="password"
+                   label="Password"></mdl-textfield>
     <div class="mdl-card__actions mdl-card--border">
       <button (click)="onLogin()"
               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">

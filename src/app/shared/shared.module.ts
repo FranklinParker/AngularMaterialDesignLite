@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MdlModule} from '@angular-mdl/core';
 
 @NgModule({
   declarations: [],
@@ -8,7 +9,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     CommonModule
   ],
   exports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MdlModule
   ]
 })
 export class SharedModule { }
