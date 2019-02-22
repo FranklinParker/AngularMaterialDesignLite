@@ -27,7 +27,9 @@ export class ProductItemComponent implements OnInit {
   onEdit() {
     this.dialogService.showCustomDialog({
       isModal: true,
-      component: ProductEditComponent
+      component: ProductEditComponent,
+      providers: [{provide: 'product', useValue: this.product}],
+
     });
   }
 }
