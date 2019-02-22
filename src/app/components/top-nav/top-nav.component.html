@@ -1,7 +1,7 @@
 <div >
   <ng-container *ngIf="isLoggedIn">
     <a routerLink="/">Products</a>
-    <a routerLink="/add">Add</a>
+    <a routerLink="/add" routerLinkActive="active-link">Add Product</a>
     <a (click)="onLogout()" >Logout</a>
   </ng-container>
 
