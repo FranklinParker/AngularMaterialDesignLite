@@ -5,6 +5,7 @@ import {ProductsRoutingModule} from './products-routing.module';
 import {ProductHomeComponent} from './components/product-home/product-home.component';
 import {ProductItemComponent} from './components/product-home/product-item/product-item.component';
 import {ProductEditComponent} from './components/product-home/product-edit/product-edit.component';
+import {MdlModule} from '@angular-mdl/core';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {ProductEditComponent} from './components/product-home/product-edit/produ
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    MdlModule
   ],
   entryComponents: [
     ProductEditComponent
