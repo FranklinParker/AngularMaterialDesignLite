@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
 import {AuthService} from '../../auth/services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-top-nav',
@@ -10,7 +10,8 @@ import {AuthService} from '../../auth/services/auth.service';
 export class TopNavComponent implements OnInit {
   isLoggedIn: boolean;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -21,4 +22,8 @@ export class TopNavComponent implements OnInit {
       });
   }
 
+  onLogout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/login');
+  }
 }

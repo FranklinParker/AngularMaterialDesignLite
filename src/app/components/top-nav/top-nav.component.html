@@ -2,6 +2,7 @@
   <ng-container *ngIf="isLoggedIn">
     <a routerLink="/">Home</a>
     <a routerLink="/edit">Edit</a>
+    <a (click)="onLogout()" >Logout</a>
   </ng-container>
 
   <a routerLink="/login" *ngIf="!isLoggedIn">Login</a>
