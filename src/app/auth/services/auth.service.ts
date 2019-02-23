@@ -31,6 +31,7 @@ export class AuthService {
     if (userFound && userFound.password === password) {
       this.loggedInUserSubject.next(userFound);
       this.isLoggedIn = true;
+      localStorage.setItem('loggedInUser', JSON.stringify(userFound));
       return true;
     } else {
       return false;
@@ -41,9 +42,20 @@ export class AuthService {
   public logout(): void {
     this.isLoggedIn = false;
     this.loggedInUserSubject.next(undefined);
+    localStorage.removeItem('loggedInUser');
   }
 
   public getIsLoggedIn(): boolean {
     return this.isLoggedIn;
+  }
+
+  public attemptLoggin() {
+    const userString = localStorage.getItem('loggedInUser');
+    if (userString) {
+      const user: User = JSON.parse(userString);
+      console.log('found loggedIn User', user);
+      this.isLoggedIn = true;
+      this.loggedInUserSubject.next(user);
+    }
   }
 }

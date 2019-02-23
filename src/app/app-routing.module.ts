@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './auth/components/login.component';
+import {LoggedInGuard} from './auth/services/logged-in.guard';
 
 const routes: Routes = [
 
@@ -9,12 +10,9 @@ const routes: Routes = [
     loadChildren: './products/products.module#ProductsModule'
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoggedInGuard]
   }
 ];
 
