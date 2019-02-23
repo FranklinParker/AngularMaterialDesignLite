@@ -5,7 +5,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {ProductsService} from '../../../services/products.service';
 import {Product} from '../../../models/product';
-import {ProductType} from '../../../models/productType';
 
 @Component({
   selector: 'app-product-add',
