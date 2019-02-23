@@ -1,13 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ProductsService} from '../../services/products.service';
-import {Product} from '../../models/product';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
+
+import {ProductsService} from '../../services/products.service';
+import {Product} from '../../models/product';
 
 @Component({
   selector: 'app-product-home',
   templateUrl: './product-home.component.html',
-  styleUrls: ['./product-home.component.scss']
+  styleUrls: ['./product-home.component.scss'],
+
 })
 export class ProductHomeComponent implements OnInit, OnDestroy {
   subs: Subscription;
@@ -34,6 +36,7 @@ export class ProductHomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
+    this.routeSubs.unsubscribe();
   }
 
   showFlashNewProd(newProd: string) {
