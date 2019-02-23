@@ -19,7 +19,6 @@ export class ProductAddComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-   // this.productTypes = this.productService.getProductTypes();
     this.form = this.fb.group({
       productName: ['', Validators.required],
       productType: ['', Validators.required],
@@ -36,7 +35,7 @@ export class ProductAddComponent implements OnInit {
     }
     console.log('productToSave', productToSave);
     this.productService.addProduct(productToSave);
-    this.router.navigateByUrl('/product/list');
+    this.router.navigate(['/product/list', {newProduct: productToSave.productName}]);
   }
 
 }

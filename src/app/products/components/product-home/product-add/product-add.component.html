@@ -8,11 +8,17 @@
     <mdl-textfield type="text"
                    formControlName="productName"
                    label="Product Name"></mdl-textfield>
-    <mdl-select label="Product Type"
-                formControlName="productType">
-      <mdl-option value="wine">Wine</mdl-option>
-      <mdl-option value="coffee">Coffee</mdl-option>
-    </mdl-select>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <select formControlName="productType"
+              class="mdl-textfield__input"
+              id="prodType" >
+        <option value="wine">Wine</option>
+        <option value="coffee">Coffee</option>
+
+      </select>
+      <label class="mdl-textfield__label" for="prodType">Product Type</label>
+    </div>
     <mdl-textfield type="text"
                    formControlName="price"
                    label="Price"></mdl-textfield>
