@@ -13,6 +13,7 @@ export class ProductHomeComponent implements OnInit, OnDestroy {
   subs: Subscription;
   routeSubs: Subscription;
   products: Product[] = [];
+  newProduct: string;
 
   constructor(private productService: ProductsService,
               private activeRoute: ActivatedRoute) {
@@ -24,12 +25,24 @@ export class ProductHomeComponent implements OnInit, OnDestroy {
         this.products = products;
       });
     this.routeSubs = this.activeRoute.params.subscribe(params => {
-     console.log('params', params['newProduct']);
+      const newProd = params['newProduct'];
+      if (newProd) {
+        this.showFlashNewProd(newProd);
+      }
     });
   }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
+
+  showFlashNewProd(newProd: string) {
+    this.newProduct = newProd;
+    setTimeout(() => {
+      this.newProduct = undefined;
+    }, 3000);
+
+  }
+
 
 }
