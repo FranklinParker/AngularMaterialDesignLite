@@ -1,11 +1,11 @@
 <div >
   <ng-container *ngIf="isLoggedIn">
-    <a routerLink="/product/list" routerLinkActive="active-link">Products</a>
-    <a routerLink="/product/add" routerLinkActive="active-link">Add Product</a>
-    <a (click)="onLogout()" >Logout</a>
+    <a class="nav-link" routerLink="/product/list" routerLinkActive="active-link">Products</a>
+    <a class="nav-link" routerLink="/product/add" routerLinkActive="active-link">Add Product</a>
+    <a class="nav-link" (click)="onLogout()" >Logout</a>
   </ng-container>
  <div class="nav-item-login-message" *ngIf="!isLoggedIn">
-   <a href="#" class="nav-item-login-message" >Please Login</a>
+   <a href="#" class="nav-item-login-message" >Welcome to Products Demo</a>
  </div>
 
 </div>
