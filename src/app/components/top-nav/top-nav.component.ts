@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/services/auth.service';
 import {Router} from '@angular/router';
+import {User} from '../../auth/models/user';
 
 @Component({
   selector: 'app-top-nav',
@@ -8,17 +9,17 @@ import {Router} from '@angular/router';
   styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent implements OnInit {
-  isLoggedIn: boolean;
+  user: User;
 
   constructor(private authService: AuthService,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.authService.getIsLoggedAsObservable()
-      .subscribe((loggedIn: boolean) => {
-        console.log('isLoggedIn:' + loggedIn)
-        this.isLoggedIn = loggedIn;
+    this.authService.getLoggedInUserAsObservable()
+      .subscribe((user: User) => {
+        console.log('user:' + user);
+        this.user = user;
       });
   }
 

@@ -17,6 +17,8 @@ a{
 
 .nav-item-login-message{
   width: 100%!important;
+  color: green;
+
 }
 
 .nav-link:hover{
@@ -25,4 +27,8 @@ a{
 
 .active-link{
   color: darkblue;
+}
+
+.display-only-link{
+  color: green;
 }

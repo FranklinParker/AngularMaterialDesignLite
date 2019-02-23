@@ -1,24 +1,36 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 
+import {User} from '../models/user';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  private isLoggedIn = new BehaviorSubject<boolean>(false);
+  private loggedInUserSubject = new BehaviorSubject<User>(undefined);
+  private isLoggedIn = false;
+  private users: User[] = [
+    {
+      userName: 'user',
+      password: 'test',
+      fullName: 'John Smith'
+    }
+  ];
 
   constructor() {
   }
 
-  public getIsLoggedAsObservable(): Observable<boolean> {
-    return this.isLoggedIn.asObservable();
+  public getLoggedInUserAsObservable(): Observable<User> {
+    return this.loggedInUserSubject.asObservable();
 
   }
 
-  public authenticate(user: string, password: string): boolean {
-    console.log('user:' + user + ' password:' + password);
-    if (user === 'user' && password === 'test') {
-      this.isLoggedIn.next(true);
+  public authenticate(userName: string, password: string): boolean {
+    const userFound = this.users.find((user: User) => user.userName === userName);
+    if (userFound && userFound.password === password) {
+      this.loggedInUserSubject.next(userFound);
+      this.isLoggedIn = true;
       return true;
     } else {
       return false;
@@ -26,7 +38,12 @@ export class AuthService {
 
   }
 
-  public logout() {
-    this.isLoggedIn.next(false);
+  public logout(): void {
+    this.isLoggedIn = false;
+    this.loggedInUserSubject.next(undefined);
+  }
+
+  public getIsLoggedIn(): boolean {
+    return this.isLoggedIn;
   }
 }
