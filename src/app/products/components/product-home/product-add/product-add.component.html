@@ -8,9 +8,11 @@
     <mdl-textfield type="text"
                    formControlName="productName"
                    label="Product Name"></mdl-textfield>
-    <mdl-textfield type="text"
-                   formControlName="productType"
-                   label="Product Type"></mdl-textfield>
+    <mdl-select label="Product Type"
+                formControlName="productType">
+      <mdl-option value="wine">Wine</mdl-option>
+      <mdl-option value="coffee">Coffee</mdl-option>
+    </mdl-select>
     <mdl-textfield type="text"
                    formControlName="price"
                    label="Price"></mdl-textfield>

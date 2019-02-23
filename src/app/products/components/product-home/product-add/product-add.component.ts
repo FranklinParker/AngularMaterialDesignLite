@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsService} from '../../../services/products.service';
-import {MdlDialogReference} from '@angular-mdl/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Product} from '../../../models/product';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+
+import {ProductsService} from '../../../services/products.service';
+import {Product} from '../../../models/product';
+import {ProductType} from '../../../models/productType';
 
 @Component({
   selector: 'app-product-add',
@@ -17,6 +19,7 @@ export class ProductAddComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+   // this.productTypes = this.productService.getProductTypes();
     this.form = this.fb.group({
       productName: ['', Validators.required],
       productType: ['', Validators.required],

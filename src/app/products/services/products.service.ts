@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../models/product';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {ProductType} from '../models/productType';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class ProductsService {
     productType: 'Coffee'
   }];
   private productSubject = new BehaviorSubject<Product[]>(this.products);
+
 
   constructor() {
   }
