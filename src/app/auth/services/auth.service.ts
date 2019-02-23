@@ -10,6 +10,7 @@ import {User} from '../models/user';
 export class AuthService {
   private loggedInUserSubject = new BehaviorSubject<User>(undefined);
   private isLoggedIn = false;
+  private LOGGED_IN_USER_KEY = 'matLiteDemoLoggedInUser';
   private users: User[] = [
     {
       userName: 'user',
@@ -29,9 +30,13 @@ export class AuthService {
   public authenticate(userName: string, password: string): boolean {
     const userFound = this.users.find((user: User) => user.userName === userName);
     if (userFound && userFound.password === password) {
-      this.loggedInUserSubject.next(userFound);
+      const loggedInUserNoPw: User = {
+        userName: userFound.userName,
+        fullName: userFound.fullName
+      };
+      this.loggedInUserSubject.next(loggedInUserNoPw);
       this.isLoggedIn = true;
-      localStorage.setItem('loggedInUser', JSON.stringify(userFound));
+      localStorage.setItem(this.LOGGED_IN_USER_KEY, JSON.stringify(loggedInUserNoPw));
       return true;
     } else {
       return false;
@@ -42,18 +47,17 @@ export class AuthService {
   public logout(): void {
     this.isLoggedIn = false;
     this.loggedInUserSubject.next(undefined);
-    localStorage.removeItem('loggedInUser');
+    localStorage.removeItem(this.LOGGED_IN_USER_KEY);
   }
 
   public getIsLoggedIn(): boolean {
     return this.isLoggedIn;
   }
 
-  public attemptLoggin() {
-    const userString = localStorage.getItem('loggedInUser');
+  public attemptLogin() {
+    const userString = localStorage.getItem(this.LOGGED_IN_USER_KEY);
     if (userString) {
       const user: User = JSON.parse(userString);
-      console.log('found loggedIn User', user);
       this.isLoggedIn = true;
       this.loggedInUserSubject.next(user);
     }
