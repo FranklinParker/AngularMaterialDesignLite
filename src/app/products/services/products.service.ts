@@ -75,7 +75,7 @@ export class ProductsService {
   }
 
   public async addProduct(product: Product) {
-    const  productSave: Product =
+    const productSave: Product =
       Object.assign({}, {
         productType: product.productType,
         productName: product.productName,
@@ -86,6 +86,23 @@ export class ProductsService {
     product.id = saved.insertedId.toString();
     this.products.unshift(productSave);
     this.productSubject.next(this.products);
+
+  }
+
+  public deleteProduct(id: string) {
+
+    const result = this.mongoDb.db('mdldemo')
+      .collection('products').deleteOne({_id: new BSON.ObjectId(id)})
+      .then((res: { deletedCount: number }) => {
+        const idx = this.products.findIndex((product: Product) => product.id === id);
+        if (idx !== -1) {
+          this.products.splice(idx, 1);
+          this.productSubject.next(this.products);
+        }
+      })
+      .catch(err => {
+        alert('Delete Failed');
+      });
 
   }
 

@@ -18,11 +18,11 @@ export class MessageModalComponent implements OnInit {
   }
 
   onYes() {
-    this.dialog.hide();
+    this.dialog.hide(true);
   }
 
   onNo() {
-    this.dialog.hide();
+    this.dialog.hide(false);
   }
 
 }

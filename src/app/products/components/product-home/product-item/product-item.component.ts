@@ -1,8 +1,9 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Product} from '../../../models/product';
-import {MdlDialogService} from '@angular-mdl/core';
+import {MdlDialogReference, MdlDialogService} from '@angular-mdl/core';
 import {ProductEditComponent} from '../product-edit/product-edit.component';
 import {MessageModalComponent} from '../../../../shared/components/message-modal/message-modal.component';
+import {ProductsService} from '../../../services/products.service';
 
 @Component({
   selector: 'app-product-item',
@@ -13,7 +14,8 @@ export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   @Input() backgroundColor: string;
 
-  constructor(private dialogService: MdlDialogService) {
+  constructor(private dialogService: MdlDialogService,
+              private productService: ProductsService) {
   }
 
   ngOnInit() {
@@ -40,6 +42,14 @@ export class ProductItemComponent implements OnInit {
       component: MessageModalComponent,
       providers: [{provide: 'message', useValue: `Delete Product ${this.product.productName} ?`}],
 
-    });
+    })
+      .subscribe((dialogRef: MdlDialogReference) => {
+        dialogRef.onHide().subscribe((confirm: boolean) => {
+          if (confirm) {
+            this.productService.deleteProduct(this.product.id);
+          }
+        });
+
+      });
   }
 }
