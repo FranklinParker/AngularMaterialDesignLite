@@ -7,12 +7,17 @@ const routes: Routes = [
 
   {
     path: 'product',
-    loadChildren: './products/products.module#ProductsModule'
+    loadChildren: './products/products.module#ProductsModule',
+    data: {animation: {page: 'productPage'}}
+
   },
   {
     path: '',
     component: LoginComponent,
-    canActivate: [LoggedInGuard]
+    canActivate: [LoggedInGuard],
+    data: {animation: {page: 'loginPage'}}
+
+
   }
 ];
 

@@ -19,6 +19,7 @@
                    label="Password"></mdl-textfield>
     <div class="mdl-card__actions mdl-card--border">
       <button type="button"
+              [disabled]="form.invalid"
               (click)="onLogin()"
               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
         Login

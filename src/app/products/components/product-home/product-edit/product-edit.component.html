@@ -13,10 +13,13 @@
 
   <div class="mdl-card__actions mdl-card--border">
     <button (click)="onSave()"
+            type="button"
+            [disabled]="form.invalid"
             class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
       Save
     </button>
     <button (click)="onCancel()"
+            type="button"
             class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
       Cancel
     </button>
