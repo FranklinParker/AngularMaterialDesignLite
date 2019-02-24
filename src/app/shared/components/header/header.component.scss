@@ -1,5 +1,9 @@
 .header-title{
   background-color: lightgrey;
-  transition: color 400ms;
+  transition: color 500ms ,content 500ms;
   font-size: 130%;
+}
+
+label {
+  margin-left: 19%;
 }
