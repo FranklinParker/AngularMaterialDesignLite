@@ -1,7 +1,8 @@
-<form [formGroup]="form"
-      (ngSubmit)="onLogin()"
-      autocomplete="off">
-  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <app-error [errorMessage]="errorMessage"
+             *ngIf="errorMessage"></app-error>
+  <form [formGroup]="form"
+        autocomplete="off">
     <mdl-textfield type="text"
                    required
                    error-msg="User Required"
@@ -15,11 +16,14 @@
                    formControlName="password"
                    label="Password"></mdl-textfield>
     <div class="mdl-card__actions mdl-card--border">
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
+      <button type="button"
+              (click)="onLogin()"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
         Login
       </button>
     </div>
-  </div>
 
-</form>
+  </form>
+</div>
+
 

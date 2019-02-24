@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  errorMessage: string;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -29,6 +30,8 @@ export class LoginComponent implements OnInit {
     const success = this.authService.authenticate(user, password);
     if (success) {
       this.router.navigateByUrl('/product/list');
+    } else {
+      this.errorMessage = 'Login failed - invalid credentials';
     }
   }
 
