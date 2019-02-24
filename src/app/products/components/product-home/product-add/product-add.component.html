@@ -20,10 +20,9 @@
       </select>
       <label class="mdl-textfield__label" for="prodType">Product Type</label>
     </div>
-    <mdl-textfield type="number"
-                   required
-                   error-msg="Price Required"
+    <mdl-textfield type="text"
                    floating-label
+                   (keypress)="onPriceKeyPress($event)"
                    formControlName="price"
                    label="Price"></mdl-textfield>
     <div class="mdl-card__actions mdl-card--border">

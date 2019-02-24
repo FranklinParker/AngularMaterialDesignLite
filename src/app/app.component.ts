@@ -3,6 +3,7 @@ import {RouterOutlet} from '@angular/router';
 
 import {AuthService} from './auth/services/auth.service';
 import {routeStateTrigger} from './routingAnimations';
+import {StitchService} from './shared/services/stitch.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import {routeStateTrigger} from './routingAnimations';
   ]
 })
 export class AppComponent implements OnInit {
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private stitchService: StitchService) {
   }
 
   ngOnInit(): void {

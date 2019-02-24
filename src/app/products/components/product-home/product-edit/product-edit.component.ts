@@ -29,7 +29,7 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
-  onSave() {
+  async onSave() {
     const { productName, productType, price} = this.form.value;
     const productToSave: Product = {
       id: this.product.id,
@@ -38,7 +38,7 @@ export class ProductEditComponent implements OnInit {
       price
     }
     console.log('productToSave', productToSave);
-    this.productService.updateProduct(productToSave);
+    await this.productService.updateProduct(productToSave);
     this.dialog.hide();
   }
   onCancel() {
