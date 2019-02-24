@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
-import {Product} from '../models/product';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {Stitch, RemoteMongoClient} from 'mongodb-stitch-browser-sdk';
+
+import {Product} from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+  mongoDb: any;
   private products: Product[] = [{
     id: '1',
     productName: 'Coffee from Jamaica',
@@ -30,7 +33,34 @@ export class ProductsService {
   private productSubject = new BehaviorSubject<Product[]>(this.products);
 
 
-  constructor() {
+   constructor() {
+    this.mongoDb = Stitch.defaultAppClient.getServiceClient(
+      RemoteMongoClient.factory,
+      'mongodb-atlas'
+    );
+    this.loadProducts();
+  }
+
+  private async loadProducts() {
+    try {
+      const products = await this.mongoDb.db('mdldemo')
+        .collection('products').find().asArray();
+      const transformedProducts = [];
+      products.forEach(prod => {
+        const product: Product = {
+          id: prod._id.toString(),
+          productName: prod.productName,
+          productType: prod.productType,
+          price: prod.price
+        };
+
+        transformedProducts.push(product);
+      });
+      console.log('products', products);
+      this.productSubject.next(products);
+    } catch (err) {
+      console.log('error get products', err);
+    }
   }
 
   public getProducts(): Observable<Product[]> {
