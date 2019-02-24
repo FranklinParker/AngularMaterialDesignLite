@@ -27,6 +27,7 @@ export class ProductsService {
 
   public async updateProduct(productSave: Product) {
     try {
+      console.log('id', productSave.id);
       const existProduct = await this.mongoDb.db('mdldemo')
         .collection('products')
         .find({_id: new BSON.ObjectId(productSave.id)})
@@ -84,9 +85,10 @@ export class ProductsService {
 
   private async loadProducts() {
     try {
-      const products = await this.mongoDb.db('mdldemo')
+      const productList = await this.mongoDb.db('mdldemo')
         .collection('products').find().asArray();
-      products.forEach(prod => {
+      productList.forEach(prod => {
+        console.log('_id:' + prod._id);
         const product: Product = {
           id: prod._id.toString(),
           productName: prod.productName,
@@ -96,8 +98,7 @@ export class ProductsService {
 
         this.products.push(product);
       });
-      console.log('products', products);
-      this.productSubject.next(products);
+      this.productSubject.next(this.products);
     } catch (err) {
       console.log('error get products', err);
     }
