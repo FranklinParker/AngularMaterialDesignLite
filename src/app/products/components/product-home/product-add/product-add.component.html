@@ -28,6 +28,7 @@
                    label="Price"></mdl-textfield>
     <div class="mdl-card__actions mdl-card--border">
       <button type="button"
+              [disabled]="form.invalid"
               (click)="onSave()"
               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
         Save
