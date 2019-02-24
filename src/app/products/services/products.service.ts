@@ -74,12 +74,18 @@ export class ProductsService {
     }
   }
 
-  public addProduct(productSave: Product) {
-    const newId: number = this.products.length + 1;
-    productSave.id = newId.toString();
+  public async addProduct(product: Product) {
+    const  productSave: Product =
+      Object.assign({}, {
+        productType: product.productType,
+        productName: product.productName,
+        price: product.price
+      });
+    const saved = await this.mongoDb.db('mdldemo')
+      .collection('products').insertOne(productSave);
+    product.id = saved.insertedId.toString();
     this.products.unshift(productSave);
     this.productSubject.next(this.products);
-    const productFind = this.products.find((product: Product) => product.id === productSave.id);
 
   }
 

@@ -25,13 +25,13 @@ export class ProductAddComponent implements OnInit {
     });
   }
 
-  onSave() {
+  async onSave() {
     const { productName, productType, price} = this.form.value;
     const productToSave: Product = {
       productName,
       productType,
       price
-    }
+    };
     console.log('productToSave', productToSave);
     this.productService.addProduct(productToSave);
     this.router.navigate(['/product/list', {newProduct: productToSave.productName}]);
