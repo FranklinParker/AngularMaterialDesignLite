@@ -3,8 +3,12 @@
     <h3>Add Product</h3>
   </div>
   <form [formGroup]="form"
+        (ngSubmit)="onSave()"
         autocomplete="off">
     <mdl-textfield type="text"
+                   required
+                   floating-label
+                   error-msg="Product Required"
                    formControlName="productName"
                    label="Product Name"></mdl-textfield>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -13,17 +17,17 @@
               id="prodType" >
         <option value="wine">Wine</option>
         <option value="coffee">Coffee</option>
-
       </select>
       <label class="mdl-textfield__label" for="prodType">Product Type</label>
     </div>
-    <mdl-textfield type="text"
+    <mdl-textfield type="number"
+                   required
+                   error-msg="Price Required"
+                   floating-label
                    formControlName="price"
                    label="Price"></mdl-textfield>
-
     <div class="mdl-card__actions mdl-card--border">
-      <button (click)="onSave()"
-              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
         Save
       </button>
     </div>
