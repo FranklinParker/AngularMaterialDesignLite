@@ -1,11 +1,11 @@
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
-    <h3>Add Product</h3>
+    <h4>Add Product</h4>
   </div>
   <form [formGroup]="form"
-        (ngSubmit)="onSave()"
         autocomplete="off">
     <mdl-textfield type="text"
+                   maxlength="35"
                    required
                    floating-label
                    error-msg="Product Required"
@@ -27,7 +27,9 @@
                    formControlName="price"
                    label="Price"></mdl-textfield>
     <div class="mdl-card__actions mdl-card--border">
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
+      <button type="button"
+              (click)="onSave()"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">
         Save
       </button>
     </div>
