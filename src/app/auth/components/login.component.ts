@@ -25,7 +25,7 @@ import {AuthService} from '../services/auth.service';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   headerMessage = 'Enter Credentials';
-  headerBackground = 'lightGray';
+  headerTextColor = 'white';
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -47,17 +47,17 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/product/list');
     } else {
       this.headerMessage = 'Login failed - invalid credentials';
-      this.headerBackground = 'red';
+      this.headerTextColor = 'red';
     }
   }
 
-  getBackground() {
-    return this.headerBackground;
+  getHeaderTextColor() {
+    return this.headerTextColor;
   }
 
   resetHeaderMessage() {
     this.headerMessage = 'Enter Credentials';
-    this.headerBackground = 'lightGray';
+    this.headerTextColor = 'white';
   }
 
 }

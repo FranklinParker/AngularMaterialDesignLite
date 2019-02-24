@@ -7,14 +7,14 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input() message: string;
-  @Input() background = 'lightgray';
+  @Input() color = 'white';
 
   constructor() {
   }
 
-  getBackgroundColor() {
+  getTextColor() {
     return {
-      'background-color': this.background
+      'color': this.color
     };
   }
 
