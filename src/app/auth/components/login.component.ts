@@ -1,16 +1,31 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../services/auth.service';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+
+import {
+  animate,
+  style,
+  transition, trigger
+} from '@angular/animations';
+
+
 import {Router} from '@angular/router';
+
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
+
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  errorMessage: string;
+  headerMessage = 'Enter Credentials';
+  headerBackground = 'lightGray';
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -31,8 +46,18 @@ export class LoginComponent implements OnInit {
     if (success) {
       this.router.navigateByUrl('/product/list');
     } else {
-      this.errorMessage = 'Login failed - invalid credentials';
+      this.headerMessage = 'Login failed - invalid credentials';
+      this.headerBackground = 'red';
     }
+  }
+
+  getBackground() {
+    return this.headerBackground;
+  }
+
+  resetHeaderMessage() {
+    this.headerMessage = 'Enter Credentials';
+    this.headerBackground = 'lightGray';
   }
 
 }

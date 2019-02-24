@@ -6,6 +6,7 @@
 .demo-card-wide.mdl-card {
   width: 90%;
   margin-left: 5%;
+  margin-top: 2px;
 
 }
 .demo-card-wide > .mdl-card__title {
@@ -20,6 +21,10 @@
 .mdl-card__actions button{
   margin-left: 40% !important;
 
+}
+
+app-error{
+  display: block;
 }
 
 

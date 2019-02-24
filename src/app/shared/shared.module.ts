@@ -4,17 +4,17 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MdlModule} from '@angular-mdl/core';
 import {MdlSelectModule} from '@angular-mdl/select';
 import {MdlPopoverModule} from '@angular-mdl/popover';
-import { ErrorComponent } from './components/error/error.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
-    ErrorComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    ErrorComponent,
+    HeaderComponent,
     ReactiveFormsModule,
     MdlModule,
     MdlSelectModule,

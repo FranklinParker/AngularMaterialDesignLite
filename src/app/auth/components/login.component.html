@@ -1,9 +1,10 @@
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <app-error [errorMessage]="errorMessage"
-             *ngIf="errorMessage"></app-error>
+  <app-header [message]="headerMessage"
+              [background]="headerBackground"></app-header>
   <form [formGroup]="form"
         autocomplete="off">
     <mdl-textfield type="text"
+                   (keyup)="resetHeaderMessage()"
                    required
                    error-msg="User Required"
                    formControlName="user"
@@ -11,6 +12,7 @@
                    label="User"></mdl-textfield>
     <mdl-textfield type="password"
                    floating-label
+                   (keyup)="resetHeaderMessage()"
                    required
                    error-msg="Password Required"
                    formControlName="password"
