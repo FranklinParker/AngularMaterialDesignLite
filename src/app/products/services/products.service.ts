@@ -94,7 +94,6 @@ export class ProductsService {
       const productList = await this.mongoDb.db('mdldemo')
         .collection('products').find().asArray();
       productList.forEach(prod => {
-        console.log('_id:' + prod._id);
         const product: Product = {
           id: prod._id.toString(),
           productName: prod.productName,

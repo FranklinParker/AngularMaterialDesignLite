@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -12,10 +12,13 @@ import {Product} from '../../../models/product';
   styleUrls: ['./product-add.component.scss']
 })
 export class ProductAddComponent implements OnInit {
+  keysAllowed = '.01233456789';
   form: FormGroup;
+
   constructor(private productService: ProductsService,
               private fb: FormBuilder,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -26,7 +29,7 @@ export class ProductAddComponent implements OnInit {
   }
 
   async onSave() {
-    const { productName, productType, price} = this.form.value;
+    const {productName, productType, price} = this.form.value;
     const productToSave: Product = {
       productName,
       productType,
@@ -35,6 +38,14 @@ export class ProductAddComponent implements OnInit {
     console.log('productToSave', productToSave);
     this.productService.addProduct(productToSave);
     this.router.navigate(['/product/list', {newProduct: productToSave.productName}]);
+  }
+
+  onPriceKeyPress(event: KeyboardEvent) {
+    const idx = this.keysAllowed.indexOf(event.key);
+    if (idx === -1) {
+      event.preventDefault();
+    }
+
   }
 
 }
