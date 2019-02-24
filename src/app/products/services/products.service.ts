@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {Stitch, RemoteMongoClient} from 'mongodb-stitch-browser-sdk';
+import {Stitch, RemoteMongoClient, BSON} from 'mongodb-stitch-browser-sdk';
 
 import {Product} from '../models/product';
 
@@ -9,31 +9,11 @@ import {Product} from '../models/product';
 })
 export class ProductsService {
   mongoDb: any;
-  private products: Product[] = [{
-    id: '1',
-    productName: 'Coffee from Jamaica',
-    price: 12.99,
-    productType: 'Coffee'
-  }, {
-    id: '2',
-    productName: 'Coffee from Cuba',
-    price: 14.99,
-    productType: 'Coffee'
-  }, {
-    id: '3',
-    productName: 'Coffee from Brazil',
-    price: 20.99,
-    productType: 'Coffee'
-  }, {
-    id: '4',
-    productName: 'Coffee From Rwanda',
-    price: 10.99,
-    productType: 'Coffee'
-  }];
+  private products: Product[] = [];
   private productSubject = new BehaviorSubject<Product[]>(this.products);
 
 
-   constructor() {
+  constructor() {
     this.mongoDb = Stitch.defaultAppClient.getServiceClient(
       RemoteMongoClient.factory,
       'mongodb-atlas'
@@ -41,39 +21,55 @@ export class ProductsService {
     this.loadProducts();
   }
 
-  private async loadProducts() {
-    try {
-      const products = await this.mongoDb.db('mdldemo')
-        .collection('products').find().asArray();
-      const transformedProducts = [];
-      products.forEach(prod => {
-        const product: Product = {
-          id: prod._id.toString(),
-          productName: prod.productName,
-          productType: prod.productType,
-          price: prod.price
-        };
-
-        transformedProducts.push(product);
-      });
-      console.log('products', products);
-      this.productSubject.next(products);
-    } catch (err) {
-      console.log('error get products', err);
-    }
-  }
-
   public getProducts(): Observable<Product[]> {
     return this.productSubject.asObservable();
   }
 
-  public updateProduct(productSave: Product) {
-    const productFind = this.products.find((product: Product) => product.id === productSave.id);
-    if (productFind) {
-      productFind.price = productSave.price;
-      productFind.productType = productSave.productType;
-      productFind.productName = productSave.productName;
+  public async updateProduct(productSave: Product) {
+    try {
+      const existProduct = await this.mongoDb.db('mdldemo')
+        .collection('products')
+        .find({_id: new BSON.ObjectId(productSave.id)})
+        .toArray();
+      console.log('found ', existProduct);
+      if (!existProduct || existProduct.length === 0) {
+        return {
+          success: false,
+          error: {
+            title: 'Record Update failed Record Not Found',
+          }
+        };
+      }
+      await this.mongoDb.db('mdldemo')
+        .collection('products')
+        .updateOne({_id: new BSON.ObjectId(productSave.id)},
+          {
+            productName: productSave.productName,
+            price: productSave.price,
+            productType: productSave.productType
+          });
+      const productFind = this.products.find((product: Product) => product.id === productSave.id);
+      if (productFind) {
+        productFind.price = productSave.price;
+        productFind.productType = productSave.productType;
+        productFind.productName = productSave.productName;
+      }
+      return {
+        success: true
+      };
 
+    } catch (e) {
+      console.log('error updating', e);
+      return {
+        success: false,
+        error: {
+          title: 'Record Update failed',
+          error: {
+            code: 500,
+            message: e.message
+          }
+        }
+      };
     }
   }
 
@@ -85,4 +81,26 @@ export class ProductsService {
     const productFind = this.products.find((product: Product) => product.id === productSave.id);
 
   }
+
+  private async loadProducts() {
+    try {
+      const products = await this.mongoDb.db('mdldemo')
+        .collection('products').find().asArray();
+      products.forEach(prod => {
+        const product: Product = {
+          id: prod._id.toString(),
+          productName: prod.productName,
+          productType: prod.productType,
+          price: prod.price
+        };
+
+        this.products.push(product);
+      });
+      console.log('products', products);
+      this.productSubject.next(products);
+    } catch (err) {
+      console.log('error get products', err);
+    }
+  }
+
 }
