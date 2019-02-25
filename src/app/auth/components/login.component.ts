@@ -5,11 +5,6 @@ import {
   Validators
 } from '@angular/forms';
 
-import {
-  animate,
-  style,
-  transition, trigger
-} from '@angular/animations';
 
 
 import {Router} from '@angular/router';
@@ -40,7 +35,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    console.log('form ', this.form.value);
     let {user, password} = this.form.value;
     user = user.trim();
     password = password.trim();
