@@ -41,7 +41,9 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     console.log('form ', this.form.value);
-    const {user, password} = this.form.value;
+    let {user, password} = this.form.value;
+    user = user.trim();
+    password = password.trim();
     const success = this.authService.authenticate(user, password);
     if (success) {
       this.router.navigateByUrl('/product/list');
