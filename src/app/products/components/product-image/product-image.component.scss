@@ -1,0 +1,32 @@
+
+.product-image{
+  margin-left: 10%;
+  width: auto;
+  height: 90px;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+  .product-image{
+    width: auto;
+    height: 80px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .product-image{
+    width: auto;
+    height: 70px;
+  }
+}
+
+
+@media only screen and (max-width: 500px) {
+
+  .product-image{
+    width: auto;
+    height: 70px;
+  }
+}
+
