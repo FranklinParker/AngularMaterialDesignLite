@@ -13,8 +13,9 @@ import {Product} from '../../../models/product';
 })
 export class ProductAddComponent implements OnInit {
   keysAllowed = '.01233456789';
+  headerMessage = 'Add Product';
+  headerTextColor = 'white';
   form: FormGroup;
-  errorMessage: string;
 
   constructor(private productService: ProductsService,
               private fb: FormBuilder,
@@ -32,7 +33,11 @@ export class ProductAddComponent implements OnInit {
   async onSave() {
     const {productName, productType, price} = this.form.value;
     if (productName.trim().length === 0) {
-      this.errorMessage = 'Product Must Not be an empty String';
+      this.headerMessage = 'Product Name Must Not be an Empty String';
+      this.headerTextColor = 'red';
+    } else if (price === 0) {
+      this.headerMessage = 'Price must greater than Zero';
+      this.headerTextColor = 'red';
     } else {
       const productToSave: Product = {
         productName,
@@ -46,10 +51,17 @@ export class ProductAddComponent implements OnInit {
 
   }
 
+  onResetHeader() {
+    this.headerMessage = 'Add Product';
+    this.headerTextColor = 'white';
+  }
+
   onPriceKeyPress(event: KeyboardEvent) {
     const idx = this.keysAllowed.indexOf(event.key);
     if (idx === -1) {
       event.preventDefault();
+    } else {
+      this.onResetHeader();
     }
   }
 
