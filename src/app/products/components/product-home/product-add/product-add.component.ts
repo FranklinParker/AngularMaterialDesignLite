@@ -35,9 +35,15 @@ export class ProductAddComponent implements OnInit {
     if (productName.trim().length === 0) {
       this.headerMessage = 'Product Name Must Not be an Empty String';
       this.headerTextColor = 'red';
+      this.form.patchValue({
+        productName: '',
+      });
     } else if (price === 0) {
       this.headerMessage = 'Price must greater than Zero';
       this.headerTextColor = 'red';
+      this.form.patchValue({
+        price: undefined,
+      });
     } else {
       const productToSave: Product = {
         productName,
