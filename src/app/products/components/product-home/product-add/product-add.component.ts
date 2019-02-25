@@ -13,6 +13,8 @@ import {Product} from '../../../models/product';
 })
 export class ProductAddComponent implements OnInit {
   keysAllowed = '.01233456789';
+  headerMessage = 'Add Product';
+  headerTextColor = 'white';
   form: FormGroup;
   errorMessage: string;
 
@@ -32,7 +34,8 @@ export class ProductAddComponent implements OnInit {
   async onSave() {
     const {productName, productType, price} = this.form.value;
     if (productName.trim().length === 0) {
-      this.errorMessage = 'Product Must Not be an empty String';
+        this.headerMessage = 'Product Must Not be an empty String';
+        this.headerTextColor = 'red';
     } else {
       const productToSave: Product = {
         productName,
@@ -44,6 +47,11 @@ export class ProductAddComponent implements OnInit {
       this.router.navigate(['/product/list', {newProduct: productToSave.productName}]);
     }
 
+  }
+
+  onResetHeader() {
+    this.headerMessage = 'Add Product';
+    this.headerTextColor = 'white';
   }
 
   onPriceKeyPress(event: KeyboardEvent) {
