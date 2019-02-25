@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {ProductHomeComponent} from './components/product-home/product-home.component';
 import {AuthGuard} from '../auth/services/auth.guard';
 import {ProductAddComponent} from './components/product-add/product-add.component';
+import {AdminGuard} from '../auth/services/admin.guard';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
   {
     path: 'add',
     component: ProductAddComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, AdminGuard]
   }
 ];
 
