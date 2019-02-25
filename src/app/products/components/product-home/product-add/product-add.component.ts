@@ -14,6 +14,7 @@ import {Product} from '../../../models/product';
 export class ProductAddComponent implements OnInit {
   keysAllowed = '.01233456789';
   form: FormGroup;
+  errorMessage: string;
 
   constructor(private productService: ProductsService,
               private fb: FormBuilder,
@@ -30,14 +31,19 @@ export class ProductAddComponent implements OnInit {
 
   async onSave() {
     const {productName, productType, price} = this.form.value;
-    const productToSave: Product = {
-      productName,
-      productType,
-      price
-    };
-    console.log('productToSave', productToSave);
-    this.productService.addProduct(productToSave);
-    this.router.navigate(['/product/list', {newProduct: productToSave.productName}]);
+    if (productName.trim().length === 0) {
+      this.errorMessage = 'Product Must Not be an empty String';
+    } else {
+      const productToSave: Product = {
+        productName,
+        productType,
+        price
+      };
+      console.log('productToSave', productToSave);
+      this.productService.addProduct(productToSave);
+      this.router.navigate(['/product/list', {newProduct: productToSave.productName}]);
+    }
+
   }
 
   onPriceKeyPress(event: KeyboardEvent) {
@@ -45,7 +51,6 @@ export class ProductAddComponent implements OnInit {
     if (idx === -1) {
       event.preventDefault();
     }
-
   }
 
 }
