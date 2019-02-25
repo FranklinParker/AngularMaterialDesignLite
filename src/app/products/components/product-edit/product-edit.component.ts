@@ -1,8 +1,8 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {MdlDialogReference} from '@angular-mdl/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Product} from '../../../models/product';
-import {ProductsService} from '../../../services/products.service';
+import {Product} from '../../models/product';
+import {ProductsService} from '../../services/products.service';
 import {combineAll} from 'rxjs/operators';
 
 @Component({

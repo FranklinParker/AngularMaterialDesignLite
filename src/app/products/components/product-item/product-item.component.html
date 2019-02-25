@@ -1,17 +1,14 @@
 <div class="demo-card-wide mdl-card "
      [ngStyle]="getBackgroundColor()">
-  <div class="mdl-card__title">
-    <img alt="No Image Avail"
-         class="product-image"
-         src="../../../../../assets/img/coffeeCup.png">
-  </div>
+  <ng-content select="app-product-image"></ng-content>
   <div class="mdl-card__title">
     <label class="mdl-card__title-text">{{product.productName}}</label>
   </div>
   <div class="mdl-card__title">
     <label class="mdl-card__title-text">{{product.price}}</label>
   </div>
-  <div class="mdl-card__actions mdl-card--border">
+  <div *ngIf="editingAllowed"
+       class="mdl-card__actions mdl-card--border">
     <button (click)="onEdit()"
             class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored edit-button ">
       Edit

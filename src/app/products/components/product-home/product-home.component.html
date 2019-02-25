@@ -12,7 +12,9 @@
       <div *ngFor="let product of products"
            class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
         <app-product-item [product]="product"
+                          [editingAllowed]="editAllowed"
                           backgroundColor="rgba(236, 236, 236, 0.88)">
+          <app-product-image [imgSource]="'../../../../assets/img/coffeeCup.png'"></app-product-image>
         </app-product-item>
       </div>
     </div>

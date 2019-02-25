@@ -4,6 +4,8 @@ import {ActivatedRoute} from '@angular/router';
 
 import {ProductsService} from '../../services/products.service';
 import {Product} from '../../models/product';
+import {AuthService} from '../../../auth/services/auth.service';
+import {User} from '../../../auth/models/user';
 
 @Component({
   selector: 'app-product-home',
@@ -13,15 +15,22 @@ import {Product} from '../../models/product';
 })
 export class ProductHomeComponent implements OnInit, OnDestroy {
   subs: Subscription;
+  userSubs: Subscription;
   routeSubs: Subscription;
   products: Product[] = [];
   newProduct: string;
+  user: User;
 
   constructor(private productService: ProductsService,
+              private authService: AuthService,
               private activeRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.userSubs = this.authService.getLoggedInUserAsObservable()
+      .subscribe((user: User) => {
+        this.user = user;
+      });
     this.subs = this.productService.getProducts()
       .subscribe((products: Product[]) => {
         this.products = products;
@@ -37,8 +46,8 @@ export class ProductHomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subs.unsubscribe();
     this.routeSubs.unsubscribe();
+    this.userSubs.unsubscribe();
   }
-
 
 
   showFlashNewProd(newProd: string) {
@@ -49,5 +58,8 @@ export class ProductHomeComponent implements OnInit, OnDestroy {
 
   }
 
+  get editAllowed() {
+    return this.user && this.user.admin;
+  }
 
 }

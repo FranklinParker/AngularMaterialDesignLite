@@ -13,9 +13,16 @@ export class AuthService {
   private LOGGED_IN_USER_KEY = 'matLiteDemoLoggedInUser';
   private users: User[] = [
     {
+      userName: 'useradmin',
+      password: 'test',
+      fullName: 'Jill Smith',
+      admin: true
+    },
+    {
       userName: 'user',
       password: 'test',
-      fullName: 'John Smith'
+      fullName: 'John Smith',
+      admin: false
     }
   ];
 
@@ -32,7 +39,8 @@ export class AuthService {
     if (userFound && userFound.password === password) {
       const loggedInUserNoPw: User = {
         userName: userFound.userName,
-        fullName: userFound.fullName
+        fullName: userFound.fullName,
+        admin: userFound.admin
       };
       this.loggedInUserSubject.next(loggedInUserNoPw);
       this.isLoggedIn = true;
