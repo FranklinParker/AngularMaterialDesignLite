@@ -83,7 +83,7 @@ export class ProductsService {
       });
     const saved = await this.mongoDb.db('mdldemo')
       .collection('products').insertOne(productSave);
-    product.id = saved.insertedId.toString();
+    productSave.id = saved.insertedId.toString();
     this.products.unshift(productSave);
     this.productSubject.next(this.products);
 

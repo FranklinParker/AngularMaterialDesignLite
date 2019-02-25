@@ -1,11 +1,16 @@
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+
   <div class="mdl-card__title">
     <h4>Add Product</h4>
+  </div>
+  <div *ngIf="errorMessage" class="mdl-card__title error-message">
+    <h4>{{errorMessage}}</h4>
   </div>
   <form [formGroup]="form"
         autocomplete="off">
     <mdl-textfield type="text"
                    maxlength="35"
+                   (keypress)="errorMessage=undefined"
                    required
                    floating-label
                    error-msg="Product Required"
