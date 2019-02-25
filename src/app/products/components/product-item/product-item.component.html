@@ -7,7 +7,8 @@
   <div class="mdl-card__title">
     <label class="mdl-card__title-text">{{product.price}}</label>
   </div>
-  <div class="mdl-card__actions mdl-card--border">
+  <div *ngIf="editingAllowed"
+       class="mdl-card__actions mdl-card--border">
     <button (click)="onEdit()"
             class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored edit-button ">
       Edit

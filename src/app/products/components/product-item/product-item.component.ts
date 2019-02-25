@@ -13,6 +13,7 @@ import {ProductsService} from '../../services/products.service';
 export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   @Input() backgroundColor: string;
+  @Input() editingAllowed = false;
 
   constructor(private dialogService: MdlDialogService,
               private productService: ProductsService) {

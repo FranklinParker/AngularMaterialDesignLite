@@ -2,7 +2,7 @@
   <ng-container *ngIf="user">
     <a class="display-only-link" >Welcome {{user.fullName}}</a>
     <a class="nav-link" routerLink="/product/list" routerLinkActive="active-link">Products</a>
-    <a class="nav-link" routerLink="/product/add" routerLinkActive="active-link">Add Product</a>
+    <a *ngIf="user.admin" class="nav-link" routerLink="/product/add" routerLinkActive="active-link">Add Product</a>
     <a class="nav-link" (click)="onLogout()" >Logout</a>
   </ng-container>
  <div class="nav-item-login-message" *ngIf="!user">
