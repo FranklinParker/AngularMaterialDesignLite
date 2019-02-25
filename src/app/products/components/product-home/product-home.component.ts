@@ -39,6 +39,8 @@ export class ProductHomeComponent implements OnInit, OnDestroy {
     this.routeSubs.unsubscribe();
   }
 
+
+
   showFlashNewProd(newProd: string) {
     this.newProduct = newProd;
     setTimeout(() => {

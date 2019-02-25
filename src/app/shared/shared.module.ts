@@ -5,20 +5,26 @@ import {MdlModule} from '@angular-mdl/core';
 import {MdlSelectModule} from '@angular-mdl/select';
 import {MdlPopoverModule} from '@angular-mdl/popover';
 import { HeaderComponent } from './components/header/header.component';
+import { MessageModalComponent } from './components/message-modal/message-modal.component';
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    MessageModalComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
     HeaderComponent,
+    MessageModalComponent,
     ReactiveFormsModule,
     MdlModule,
     MdlSelectModule,
     MdlPopoverModule
+  ],
+  entryComponents: [
+    MessageModalComponent
   ]
 })
 export class SharedModule { }
