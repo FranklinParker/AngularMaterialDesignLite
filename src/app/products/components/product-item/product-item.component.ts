@@ -1,9 +1,9 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Product} from '../../../models/product';
+import {Product} from '../../models/product';
 import {MdlDialogReference, MdlDialogService} from '@angular-mdl/core';
 import {ProductEditComponent} from '../product-edit/product-edit.component';
-import {MessageModalComponent} from '../../../../shared/components/message-modal/message-modal.component';
-import {ProductsService} from '../../../services/products.service';
+import {MessageModalComponent} from '../../../shared/components/message-modal/message-modal.component';
+import {ProductsService} from '../../services/products.service';
 
 @Component({
   selector: 'app-product-item',
