@@ -34,7 +34,18 @@ mdl-select{
   width: 60% !important;
 }
 
-.error-message{
-  color: white;
+.error-message {
   background-color: red;
+  color: white;
+  border-radius: 5px;
 }
+
+.add-record{
+  background-color: lightgrey;
+  color: white;
+  border-radius: 5px;
+}
+
+
+
+
